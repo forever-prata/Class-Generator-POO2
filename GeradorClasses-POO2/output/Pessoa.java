@@ -46,4 +46,11 @@ public class Pessoa {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.toString());
+		builder.append("Pessoa [nome=").append(nome).append(", idade=").append(idade).append(", email=").append(email).append("]");
+		return builder.toString();
+	}
 }

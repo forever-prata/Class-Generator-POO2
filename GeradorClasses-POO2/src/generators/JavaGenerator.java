@@ -149,8 +149,29 @@ public class JavaGenerator extends Generator{
                builder.append("\t"+visibility+" "+returne+" "+name+"(){\n\t\treturn null;\n\t}\n\n");
            }
        }
-		builder.append("}");
+       
+		//to string
+       	builder.append("\t@Override\n\tpublic String toString() {\n\t\tStringBuilder builder = new StringBuilder();\n");
+       	builder.append("\t\tbuilder.append(super.toString());\n");
+       	builder.append("\t\tbuilder.append(\"" + className + " [");
+
+       	for (int i = 0; i < attributesArray.length(); i++) {
+       		JSONObject attribute = attributesArray.getJSONObject(i);
+       		String name = attribute.getString("nome");
+       		builder.append(name).append("=\").append(").append(name).append(").append(\"");
+
+       		if (i < attributesArray.length() - 1) {
+       			builder.append(", ");
+       		}
+       	}
+
+       	builder.append("]\");\n");
+       	builder.append("\t\treturn builder.toString();\n\t}");
+       
+		builder.append("\n}");
 		return builder.toString();
+		
+
 	}
 
 }

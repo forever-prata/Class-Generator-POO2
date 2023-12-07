@@ -132,7 +132,7 @@ public class PhpGenerator extends Generator{
        
        builder.append("\n");
        
-       //funcoes mudar
+       //funcoes
        JSONArray functionsArray = jsonObject.getJSONArray("funcoes");
        for (Object functionObj : functionsArray) {
            if (functionObj instanceof JSONObject) {
@@ -142,6 +142,19 @@ public class PhpGenerator extends Generator{
                builder.append("\t"+visibility+" function "+name+"(){\n\t\treturn null;\n\t}\n\n");
            }
        }
+       
+       //to string
+       builder.append("\tpublic function __toString() {\n\t\treturn ");
+      	for (int i = 0; i < attributesArray.length(); i++) {
+       		JSONObject attribute = attributesArray.getJSONObject(i);
+       		String name = attribute.getString("nome");
+       		builder.append("'"+name+"'"+".'='.$this->"+name);
+       		if (i < attributesArray.length() - 1) {
+       			builder.append(".");
+       		}
+       	}
+      	builder.append(";\n\t}\n");
+       
 		builder.append("}\n?>");
 		return builder.toString();
 	}

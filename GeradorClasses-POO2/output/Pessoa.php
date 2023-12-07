@@ -47,5 +47,8 @@ class Pessoa {
 		return null;
 	}
 
+	public function __toString() {
+		return 'nome'.'='.$this->nome.'idade'.'='.$this->idade.'email'.'='.$this->email;
+	}
 }
 ?>
