@@ -32,3 +32,5 @@ class Pessoa:
 	def _matar(self):
 		return None
 
+	def __str__(self):
+		return  self.nome + ' ' + self.idade + ' ' + self.email

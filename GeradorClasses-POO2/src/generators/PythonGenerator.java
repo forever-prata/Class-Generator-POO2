@@ -181,6 +181,19 @@ public class PythonGenerator extends Generator{
             }
         }
         
+        //to string
+        builder.append("\tdef __str__(self):\n\t\treturn ");
+       	for (int i = 0; i < attributesArray.length(); i++) {
+       		JSONObject attribute = attributesArray.getJSONObject(i);
+       		String name = attribute.getString("nome");
+       		builder.append(" self."+name);
+
+       		if (i < attributesArray.length() - 1) {
+       			builder.append(" + ' ' +");
+       		}
+       	}
+           //return self.firstName + " " + self.lastName
+        
 		return builder.toString();
 	}
 }
